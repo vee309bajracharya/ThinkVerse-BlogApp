@@ -1,0 +1,191 @@
+<section class="row">
+
+    {{-- users tab left --}}
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+        <div class="pd-20 card-box height-100-p">
+            <div class="profile-photo">
+                <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i
+                        class="fa fa-pencil"></i></a>
+                <img src="{{ $user->picture }}" alt="" class="avatar-photo" />
+                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body pd-5">
+                                <div class="img-container">
+                                    <img id="image" src="{{ $user->picture }}" alt="Picture" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 class="text-center h5 mb-0">{{ $user->name }}</h5>
+
+
+            {{-- profile details here --}}
+            <div class="profile-info my-3">
+                <h5 class="mb-20 h5">Your Details</h5>
+                <ul>
+                    <li>
+                        <span>Username</span>
+                        {{ $user->username }}
+                    </li>
+                    <li>
+                        <span>Email Address:</span>
+                        {{ $user->email }}
+                    </li>
+                    <li class="text-left">
+                        <span>Bio:</span>
+                        {{ $user->bio }}
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- users tabs right --}}
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+        <div class="card-box height-100-p overflow-hidden">
+            <div class="profile-tab height-100-p">
+                <div class="tab height-100-p">
+                    <ul class="nav nav-tabs customtab" role="tablist">
+                        <li class="nav-item">
+                            <a wire:click="selectTab('personal_details')"
+                                class="nav-link {{ $tab == 'personal_details' ? 'active' : '' }}" data-toggle="tab"
+                                href="" role="tab">Personal
+                                Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a wire:click="selectTab('update_password')"
+                                class="nav-link {{ $tab == 'update_password' ? 'active' : '' }}" data-toggle="tab"
+                                href="" role="tab">Update Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <a wire:click="selectTab('social_links')"
+                                class="nav-link {{ $tab == 'social_links' ? 'active' : '' }}" data-toggle="tab"
+                                href="" role="tab">Social Links</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade {{ $tab == 'personal_details' ? 'show active' : '' }}" id="timeline"
+                            role="tabpanel">
+                            <div class="pd-20">
+                                <div class="profile-timeline" role="tabpanel">
+                                    <div class="pd-10">
+                                        {{-- personal details form --}}
+                                        <h4 class="text-blue  mb-20">
+                                            Edit Your Personal Details
+                                        </h4>
+                                        <form wire:submit="updatePersonalDetails()">
+
+
+                                            <section class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="fullName">Full Name</label>
+                                                        <input type="text" class="form-control" wire:model="name"
+                                                            placeholder="">
+                                                        @error('name')
+                                                            <p x-data="{ show: true }" x-show="show"
+                                                                x-init="setTimeout(() => show = false, 5000)" x-transition.opacity.duration.500ms
+                                                                class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                                {{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+
+                                                        <label for="username">Username</label>
+                                                        <input type="text" class="form-control" wire:model="username"
+                                                            placeholder="">
+                                                        @error('username')
+                                                            <p x-data="{ show: true }" x-show="show"
+                                                                x-init="setTimeout(() => show = false, 5000)" x-transition.opacity.duration.500ms
+                                                                class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                                {{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+
+                                                        <label for="email">Email</label>
+                                                        <input type="text" class="form-control" wire:model="email"
+                                                            placeholder="">
+                                                        @error('email')
+                                                            <p x-data="{ show: true }" x-show="show"
+                                                                x-init="setTimeout(() => show = false, 5000)" x-transition.opacity.duration.500ms
+                                                                class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                                {{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="bio">Bio</label>
+                                                        <textarea wire:model="bio" cols="1" rows="1" class="form-control" placeholder="Tell about yourself"></textarea>
+                                                        @error('bio')
+                                                            <p x-data="{ show: true }" x-show="show"
+                                                                x-init="setTimeout(() => show = false, 5000)" x-transition.opacity.duration.500ms
+                                                                class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                                {{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+
+                                            </section>
+
+                                            <div class="text-center">
+                                                <button type="submit" class="btnPers w-40">Save Changes</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade {{ $tab == 'update_password' ? 'show active' : '' }}"
+                            id="timeline" role="tabpanel">
+                            <div class="pd-20">
+                                <div class="profile-timeline" role="tabpanel">
+                                    <div class="pd-20">
+                                        --Update Pwd here--
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade {{ $tab == 'social_links' ? 'show active' : '' }}" id="timeline"
+                            role="tabpanel">
+                            <div class="pd-20">
+                                <div class="profile-timeline" role="tabpanel">
+                                    <div class="pd-20">
+                                        --Social links here--
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
