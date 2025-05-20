@@ -2,9 +2,12 @@
 
 namespace App\Livewire\User;
 
-use Livewire\Component;
 use App\Models\User;
+use Livewire\Component;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use App\Helpers\CMail;
 
 class Profile extends Component
 {
@@ -13,7 +16,8 @@ class Profile extends Component
     public $tabname = 'personal_details';
     protected $queryString = ['tab'=>['keep'=>true]];
 
-    public $name, $username, $email, $bio;
+    public $name, $username, $email, $bio; //personal details
+    public $current_password, $new_password, $new_password_confirmation; //password form
 
 
     public function selectTab($tab){
@@ -30,6 +34,7 @@ class Profile extends Component
         $this->bio = $user->bio;
     }
 
+    //updatepersonalDetails()
     public function updatePersonalDetails(){
         $user = User::findOrFail(auth()->id());
 
@@ -60,6 +65,58 @@ class Profile extends Component
         }else{
             $this->dispatch('showToast',['type'=>'error', 'message'=> 'Something went wrong']);
         }
+    }
+
+    //updatePassword()
+    public function updatePassword(){
+        $user = User::findOrFail(auth()->id());
+
+        //form validation
+        $this->validate([
+            'current_password'=>[
+                'required','min:8',
+                function($attribute,$value,$fail) use($user){
+                    if(!Hash::check($value, $user->password)){
+                        return $fail(__('Current password does not match the records'));
+                    }
+                }
+            ],
+            'new_password'=>'required|min:8|confirmed',            
+        ]);
+
+        //user password update
+        $updated = $user->update([
+            'password'=>Hash::make($this->new_password)
+        ]);
+
+        if($updated){
+            //send email notification of password changed
+            $data = array(
+                'user'=>$user,
+                'new_password'=>$this->new_password
+            );
+
+            $mail_body = view('email-templates.password-changes-template', $data)->render();
+
+            $mail_config = array(
+                'recipient_address'=>$user->email,
+                'recipient_name'=>$user->name,
+                'subject'=>'Password Changed',
+                'body'=>$mail_body
+            );
+
+            CMail::send($mail_config);
+
+            //logout and render to login
+            auth()->logout();
+            Session::flash('info', 'Your password has been changed successfully. Please login with new password');
+            $this->redirectRoute('user.login');
+
+        }else{
+            $this->dispatch('showToast', ['type'=>'error', 'message'=>'Something went wrong']);
+        }
+
+
     }
 
     public function render()

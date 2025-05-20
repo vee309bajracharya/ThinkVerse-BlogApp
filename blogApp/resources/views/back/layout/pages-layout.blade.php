@@ -36,7 +36,7 @@
 <body>
 
     {{-- pre loader --}}
-    <section class="pre-loader">
+    {{-- <section class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">
                 <img class="w-90" src="{{ asset('backend/vendors/images/mainLogo2.png') }}" alt="" />
@@ -47,7 +47,7 @@
             <div class="percent" id="percent1">0%</div>
             <div class="loading-text">Loading...</div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="header">
         {{-- search --}}

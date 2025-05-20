@@ -17,8 +17,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <input type="submit" value="Update" class="btn btn-primary" />
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <input type="submit" value="Update" class="btnPers" />
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
                                     Close
                                 </button>
                             </div>
@@ -162,12 +162,57 @@
 
                         </div>
 
+                        {{-- pwd form --}}
                         <div class="tab-pane fade {{ $tab == 'update_password' ? 'show active' : '' }}"
                             id="timeline" role="tabpanel">
                             <div class="pd-20">
                                 <div class="profile-timeline" role="tabpanel">
                                     <div class="pd-20">
-                                        --Update Pwd here--
+                                        <form wire:submit="updatePassword()">
+                                            <div class="w-2/3 flex flex-col">
+
+                                                {{-- current pwd --}}
+                                                <div class="mb-2">
+                                                    <label for="current_password">Current Password</label>
+                                                    <input type="password" class="form-control"
+                                                        wire:model="current_password">
+                                                    @error('current_password')
+                                                        <p x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                                                            x-transition.opacity.duration.500ms
+                                                            class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                {{-- new password --}}
+                                                <div class="my-2">
+                                                    <label for="new_password">New Password</label>
+                                                    <input type="password" class="form-control" wire:model="new_password">
+                                                    @error('new_password')
+                                                        <p x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                                                            x-transition.opacity.duration.500ms
+                                                            class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                {{-- confirm new password --}}
+                                                <div class="my-2">
+                                                    <label for="new_password_confirmation">Confirm New Password</label>
+                                                    <input type="password" class="form-control"
+                                                        wire:model="new_password_confirmation">
+                                                    @error('new_password_confirmation')
+                                                        <p x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                                                            x-transition.opacity.duration.500ms
+                                                            class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <button type="submit" class="btnPers w-40">Update Password</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
