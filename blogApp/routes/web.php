@@ -17,7 +17,7 @@ Route::view('/auth-page', 'example-auth');
 // routes for registered users
 Route::prefix('user')->name('user.')->group(function(){
 
-    Route::middleware('guest')->group(function(){
+    Route::middleware(['guest', 'preventBackHistory'])->group(function(){
         Route::controller(AuthController::class)->group(function(){
 
             Route::get('/login','loginForm')->name('login');
@@ -34,7 +34,7 @@ Route::prefix('user')->name('user.')->group(function(){
         });
     });
 
-    Route::middleware('auth')->group(function(){
+    Route::middleware(['auth','preventBackHistory'])->group(function(){
         Route::controller(UserController::class)->group(function(){
             Route::get('/dashboard', 'userDashboard')->name('dashboard');
             Route::post('/logout', 'logoutHandler')->name('logout');
