@@ -3,11 +3,12 @@
 namespace App\Livewire\User;
 
 use App\Models\User;
+use App\Helpers\CMail;
 use Livewire\Component;
 use Illuminate\Http\Request;
+use App\Models\UserSocialLink;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Helpers\CMail;
 
 class Profile extends Component
 {
@@ -18,7 +19,7 @@ class Profile extends Component
 
     public $name, $username, $email, $bio; //personal details
     public $current_password, $new_password, $new_password_confirmation; //password form
-
+    public $fb_url, $insta_url, $github_url; //updateSocialLink()
 
     public function selectTab($tab){
         $this->tab = $tab;
@@ -27,12 +28,20 @@ class Profile extends Component
     public function mount(){
         $this->tab = Request('tab') ? Request('tab') : $this->tabname;
 
-        $user = User::findOrFail(auth()->id());
+        $user = User::with('social_links')->findOrFail(auth()->id());
         $this->name = $user->name;
         $this->username = $user->username;
         $this->email = $user->email;
         $this->bio = $user->bio;
+
+        if(!is_null($user->social_links)){
+            $this->fb_url = $user->social_links->fb_url;
+            $this->insta_url = $user->social_links->insta_url;
+            $this->github_url = $user->social_links->github_url;
+        }
     }
+
+
 
     //updatepersonalDetails()
     public function updatePersonalDetails(){
@@ -116,6 +125,38 @@ class Profile extends Component
             $this->dispatch('showToast', ['type'=>'error', 'message'=>'Something went wrong']);
         }
 
+
+    }
+
+    //updateSocialLink()
+    public function updateSocialLinks(){
+        $this->validate([
+            'fb_url'=>'nullable|url',
+            'insta_url'=>'nullable|url',
+            'github_url'=>'nullable|url',
+        ]);
+
+        $user = User::findOrFail(auth()->id());
+        //fetch the url
+        $data = array(
+            'fb_url'=>$this->fb_url,
+            'insta_url'=>$this->insta_url,
+            'github_url'=>$this->github_url,
+        );
+
+        if(!is_null($user->social_links)){
+            $query = $user->social_links()->update($data);
+        }else{
+            $data['user_id'] = $user->id;
+            $query = UserSocialLink::insert($data);
+        }
+
+        if($query){
+            $this->dispatch('showToast', ['type'=> 'success', 'message'=>'social links have updated']);
+        }else{
+            $this->dispatch('showToast', ['type'=> 'error', 'message'=>'Something went wrong']);
+
+        }
 
     }
 

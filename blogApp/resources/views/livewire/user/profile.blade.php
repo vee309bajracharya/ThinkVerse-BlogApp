@@ -27,6 +27,51 @@
                 </div>
             </div>
             <h5 class="text-center h5 mb-0">{{ $user->name }}</h5>
+            <div class="text-center">
+                <ul class="flex justify-center space-x-2">
+                    @if($user->social_links && $user->social_links->fb_url)
+                    <li>
+                        <a
+                            href="{{ $user->social_links->fb_url }}"
+                            target="_blank"
+                            class="btn"
+                            data-bgcolor="#0866ff"
+                            data-color="#ffffff">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    @endif
+            
+                    @if($user->social_links && $user->social_links->insta_url)
+                    <li>
+                        <a
+                            href="{{ $user->social_links->insta_url }}"
+                            target="_blank"
+                            class="btn"
+                            data-bgcolor="#dd0081"
+                            data-color="#ffffff"
+                        >
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                    @endif
+            
+                    @if($user->social_links && $user->social_links->github_url)
+                    <li>
+                        <a
+                            href="{{ $user->social_links->github_url }}"
+                            target="_blank"
+                            class="btn"
+                            data-bgcolor="#15191f"
+                            data-color="#ffffff"
+                        >
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </li>
+                    @endif
+                </ul>
+            </div>
+            
 
 
             {{-- profile details here --}}
@@ -38,11 +83,11 @@
                         {{ $user->username }}
                     </li>
                     <li>
-                        <span>Email Address:</span>
+                        <span>Email Address</span>
                         {{ $user->email }}
                     </li>
                     <li class="text-left">
-                        <span>Bio:</span>
+                        <span>Bio</span>
                         {{ $user->bio }}
                     </li>
 
@@ -151,7 +196,7 @@
 
                                             </section>
 
-                                            <div class="text-center">
+                                            <div>
                                                 <button type="submit" class="btnPers w-40">Save Changes</button>
                                             </div>
 
@@ -187,7 +232,8 @@
                                                 {{-- new password --}}
                                                 <div class="my-2">
                                                     <label for="new_password">New Password</label>
-                                                    <input type="password" class="form-control" wire:model="new_password">
+                                                    <input type="password" class="form-control"
+                                                        wire:model="new_password">
                                                     @error('new_password')
                                                         <p x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
                                                             x-transition.opacity.duration.500ms
@@ -219,17 +265,61 @@
 
                         </div>
 
-                        <div class="tab-pane fade {{ $tab == 'social_links' ? 'show active' : '' }}" id="timeline"
+                        <section class="tab-pane fade {{ $tab == 'social_links' ? 'show active' : '' }}" id="timeline"
                             role="tabpanel">
                             <div class="pd-20">
                                 <div class="profile-timeline" role="tabpanel">
                                     <div class="pd-20">
-                                        --Social links here--
+                                        <form wire:submit="updateSocialLinks()" method="POST">
+                                            <section class="w-2/3 flex flex-col">
+                                                
+                                                <div class="mb-2">
+                                                    <label for="fb_url">Facebook URL</label>
+                                                    <input type="text" class="form-control"
+                                                        wire:model="fb_url">
+                                                    @error('fb_url')
+                                                        <p x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                                                            x-transition.opacity.duration.500ms
+                                                            class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+    
+                                                <div class="my-2">
+                                                    <label for="insta_url">Instagram URL</label>
+                                                    <input type="text" class="form-control"
+                                                        wire:model="insta_url">
+                                                    @error('insta_url')
+                                                        <p x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                                                            x-transition.opacity.duration.500ms
+                                                            class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+    
+                                                <div class="my-2">
+                                                    <label for="github_url">GitHub URL</label>
+                                                    <input type="text" class="form-control"
+                                                        wire:model="github_url">
+                                                    @error('github_url')
+                                                        <p x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                                                            x-transition.opacity.duration.500ms
+                                                            class="error-msg text-sm text-[var(--danger)] font-medium mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+    
+                                                <div class="mt-4">
+                                                    <button type="submit" class="btnPers w-40">Update Links</button>
+                                                </div>
+                                         
+                                            </section>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
 
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\UserType;
+use App\UserStatus;
+use App\Models\UserSocialLink;
+
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-use App\UserStatus;
-use App\UserType;
 
 class User extends Authenticatable
 {
@@ -54,6 +55,10 @@ class User extends Authenticatable
     public function getPictureAttribute($value)
     {
         return $value ? asset('/images/users/' . $value) : asset('/images/users/default_user.png');
+    }
+
+    public function social_links(){
+        return $this->belongsTo(UserSocialLink::class, 'id', 'user_id');
     }
     
 }
