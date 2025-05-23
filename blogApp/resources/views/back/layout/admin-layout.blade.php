@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="{{ asset('backend/vendors/styles/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/vendors/styles/icon-font.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/vendors/styles/style.css') }}" />
-    <link rel="icon" type="image/svg+xml" href="{{ asset('backend/vendors/images/title-icon.svg') }}" />
 
 
 

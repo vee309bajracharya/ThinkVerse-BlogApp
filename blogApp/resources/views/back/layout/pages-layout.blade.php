@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="{{ asset('backend/vendors/styles/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/vendors/styles/icon-font.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/vendors/styles/style.css') }}" />
-    <link rel="icon" type="image/svg+xml" href="{{ asset('backend/vendors/images/title-icon.svg') }}" />
 
-    <!-- toastr -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-
+    {{-- jQuery --}}
+    <link rel="stylesheet" href="/extr-assets/jquery-ui-1.14.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="/extr-assets/jquery-ui-1.14.1/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="/extr-assets/jquery-ui-1.14.1/jquery-ui.theme.min.css">
 
     @vite('resources/css/app.css')
 
@@ -184,7 +184,7 @@
 
 
                     <li>
-                        <a href="{{route('user.categories')}}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('user.categories') }}" class="dropdown-toggle no-arrow">
                             <span class="micon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -258,15 +258,14 @@
     <script src="{{ asset('backend/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('backend/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('backend/vendors/scripts/layout-settings.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/extr-assets/jquery-ui-1.14.1/jquery-ui.min.js"></script>
+   
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     {{-- custom js --}}
     @stack('scripts')
-
-    <!-- toastr -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <x-toast-alert />
 
 </body>
 
