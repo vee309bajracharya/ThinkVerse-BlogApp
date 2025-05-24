@@ -10,6 +10,11 @@ class Categories extends Component
 {
     public $isUpdateParentCategoryMode = false;
     public $pcategory_id, $pcategory_name;
+    public $isUpdateCategoryMode = false;
+    public $category_id, $parent = 0, $category_name;
+
+
+
     public $showToast = false;
     public $toastType = 'info';
     public $toastMessage = '';
@@ -28,6 +33,8 @@ class Categories extends Component
             'duration' => 3000
         ]);
     }
+
+    // Parent category section starts
 
     public function addParentCategory(){
         $this->pcategory_id = null;
@@ -99,8 +106,7 @@ class Categories extends Component
         }
     }
 
-    public function deleteParentCategory($id)
-    {
+    public function deleteParentCategory($id){
         try {
             ParentCategory::findOrFail($id)->delete();
             $this->showToast('success', 'Parent Category deleted');
@@ -119,6 +125,92 @@ class Categories extends Component
         $this->isUpdateParentCategoryMode = false;
         $this->pcategory_id = $this->pcategory_name = null;
     }
+    // Parent category section ends
+
+
+    // category section starts
+    public function addCategory(){
+        $this->category_id = null;
+        $this->parent = 0;
+        $this->category_name = null;
+        $this->isUpdateCategoryMode = false;
+        $this->showCategoryModalForm();
+    }
+
+    public function createCategory(){
+        // validate
+        $this->validate([
+            'category_name'=>'required|unique:categories,name'
+        ],[
+            'category_name.required'=>'Category field is required',
+            'category_name.unique'=>'Category name already exists',
+        ]);
+        //store
+        $category = new Category();
+        $category->parent = $this->parent;
+        $category->name = $this->category_name;
+        $saved = $category->save();
+        if($saved){
+            $this->hideCategoryModalForm();
+            $this->showToast('success', 'Category Added');
+        }else{
+            $this->showToast('error', 'Something went wrong');
+        }
+
+    }
+
+    public function editCategory($id){
+        $category = Category::findOrFail($id);
+        $this->category_id = $category->id;
+        $this->parent = $category->parent;
+        $this->category_name = $category->name;
+        $this->isUpdateCategoryMode = true;
+        $this->showCategoryModalForm();
+    }
+
+    public function updateCategory(){
+        // validate
+        $category = Category::findOrFail($this->category_id);
+        $this->validate([
+            'category_name'=>'required|unique:categories,name,'.$category->id
+        ],[
+            'category_name.required'=>'Category name field is required',
+            'category_name.unique'=>'Category name already exists',
+        ]);
+        // update
+        $category->name = $this->category_name;
+        $category->parent = $this->parent;
+        $category->slug = null;
+        $updated = $category->save();
+        if($updated){
+            $this->hideCategoryModalForm();
+            $this->showToast('success', 'Category Added');
+        }else{
+            $this->showToast('error', 'Something went wrong');
+        }
+    }
+
+    public function deleteCategory($id){
+        try {
+            Category::findOrFail($id)->delete();
+            $this->showToast('success', 'Category deleted');
+        } catch (\Exception $e) {
+            $this->showToast('error', 'Failed to delete');
+        }
+    }
+  
+    public function showCategoryModalForm(){
+        $this->resetErrorBag();
+        $this->dispatch('showCategoryModalForm');
+    }
+
+    public function hideCategoryModalForm(){
+        $this->dispatch('hideCategoryModalForm');
+        $this->isUpdateCategoryMode = false;
+        $this->category_id = $this->category_name = null;
+        $this->parent = 0;
+    }
+    // category section ends
 
 
 
@@ -126,6 +218,7 @@ class Categories extends Component
     {
         return view('livewire.user.categories',[
             'pcategories'=> ParentCategory::orderBy('ordering','asc')->get(),
+            'categories'=>Category::orderBy('ordering','asc')->get(),
             'showToast' => $this->showToast,
             'toastType' => $this->toastType,
             'toastMessage' => $this->toastMessage

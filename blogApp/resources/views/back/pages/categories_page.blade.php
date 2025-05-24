@@ -16,7 +16,7 @@
                 }, 3000);
             });
 
-            // Modal handling
+            // Modal handling for parent category
             window.addEventListener('showParentCategoryModalForm', function() {
                 $('#pcategory_modal').modal('show');
             });
@@ -25,6 +25,16 @@
                 $('#pcategory_modal').modal('hide');
             });
 
+            // Modal handling for category
+            window.addEventListener('showCategoryModalForm', function() {
+                $('#category_modal').modal('show');
+            });
+
+            window.addEventListener('hideCategoryModalForm', function() {
+                $('#category_modal').modal('hide');
+            });
+
+            // ordering
             $('table tbody#sortable_parent_categories').sortable({
                 cursor: 'move',
                 update: function(event, ui) {
