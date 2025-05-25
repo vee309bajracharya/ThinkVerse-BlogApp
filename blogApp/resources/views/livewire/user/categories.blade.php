@@ -21,17 +21,19 @@
                         </thread>
                         <tbody id="sortable_parent_categories">
                             @forelse ($pcategories as $item)
-                                <tr data-index="{{$item->id}}" data-ordering="{{$item->ordering}}">
+                                <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{$item->children->count()}}</td>
+                                    <td>{{ $item->children->count() }}</td>
                                     <td>
                                         <div class="table-actions">
                                             <a href="javascript:;" wire:click="editParentCategory({{ $item->id }})"
                                                 class="text-primary mx-2">
                                                 <i class="dw dw-edit2"></i>
                                             </a>
-                                            <a href="javascript:;" wire:click="deleteParentCategory({{$item->id}})" class="text-danger mx-2">
+                                            <a href="javascript:;"
+                                                wire:click="deleteParentCategory({{ $item->id }})"
+                                                class="text-danger mx-2">
                                                 <i class="dw dw-delete-3"></i>
                                             </a>
                                         </div>
@@ -48,6 +50,10 @@
                         </tbody>
                     </table>
                 </section>
+                {{-- pagination --}}
+                <div class="d-block mt-1 text-center">
+                    {{ $pcategories->links('livewire::simple-bootstrap') }}
+                </div>
             </section>
         </section>
 
@@ -72,22 +78,25 @@
                         </thread>
                         <tbody>
                             @forelse ($categories as $item)
-                            <tr>
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{!is_null($item->parent_category) ? $item->parent_category->name : '-'}}</td>
-                                <td>-</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="javascript:;" wire:click="editCategory({{$item->id}})" class="text-primary mx-2">
-                                            <i class="dw dw-edit2"></i>
-                                        </a>
-                                        <a href="javascript:;" wire:click="deleteCategory({{$item->id}})" class="text-danger mx-2">
-                                            <i class="dw dw-delete-3"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ !is_null($item->parent_category) ? $item->parent_category->name : '-' }}
+                                    </td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <a href="javascript:;" wire:click="editCategory({{ $item->id }})"
+                                                class="text-primary mx-2">
+                                                <i class="dw dw-edit2"></i>
+                                            </a>
+                                            <a href="javascript:;" wire:click="deleteCategory({{ $item->id }})"
+                                                class="text-danger mx-2">
+                                                <i class="dw dw-delete-3"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
                             @empty
                                 <tr>
                                     <td colspan="5">
@@ -98,12 +107,16 @@
                         </tbody>
                     </table>
                 </section>
+                {{-- pagination --}}
+                <div class="d-block mt-1 text-center">
+                    {{ $categories->links('livewire::simple-bootstrap') }}
+                </div>
             </div>
         </section>
     </section>
 
 
-    {{-- medium model fade for parent category--}}
+    {{-- medium model fade for parent category --}}
     <section wire:ignore.self class="modal fade" id="pcategory_modal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -125,16 +138,13 @@
                     @endif
                     <div class="form-group">
                         <label for="pcategory_name"><b>Parent Category Name</b></label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="pcategory_name" 
-                               wire:model.lazy="pcategory_name" 
-                               x-data 
-                               x-init="$el.value = '{{ $pcategory_name }}'">
+                        <input type="text" class="form-control" id="pcategory_name" wire:model.lazy="pcategory_name"
+                            x-data x-init="$el.value = '{{ $pcategory_name }}'">
                         @error('pcategory_name')
-                        <p class="error-msg text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1">
-                            {{ $message }}
-                        </p>
+                            <p
+                                class="error-msg text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
@@ -148,7 +158,7 @@
         </div>
     </section>
 
-    {{-- medium model fade for category--}}
+    {{-- medium model fade for category --}}
     <section wire:ignore.self class="modal fade" id="category_modal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -173,28 +183,26 @@
                         <select wire:model="parent" class="custom-select">
                             <option value="0">Uncategorized</option>
                             @foreach ($pcategories as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                         @error('parent')
-                        <p class="error-msg text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1">
-                            {{ $message }}
-                        </p>
+                            <p
+                                class="error-msg text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="category_name"><b> Category Name</b></label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="category_name" 
-                               wire:model.lazy="category_name" 
-                               x-data 
-                               x-init="$el.value = '{{ $category_name }}'">
+                        <input type="text" class="form-control" id="category_name"
+                            wire:model.lazy="category_name" x-data x-init="$el.value = '{{ $category_name }}'">
                         @error('category_name')
-                        <p class="error-msg text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1">
-                            {{ $message }}
-                        </p>
+                            <p
+                                class="error-msg text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 

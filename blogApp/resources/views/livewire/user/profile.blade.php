@@ -35,8 +35,7 @@
                             href="{{ $user->social_links->fb_url }}"
                             target="_blank"
                             class="btn"
-                            data-bgcolor="#0866ff"
-                            data-color="#ffffff">
+                            data-color="#000">
                             <i class="fa fa-facebook"></i>
                         </a>
                     </li>
@@ -48,8 +47,7 @@
                             href="{{ $user->social_links->insta_url }}"
                             target="_blank"
                             class="btn"
-                            data-bgcolor="#dd0081"
-                            data-color="#ffffff"
+                            data-color="#000"
                         >
                             <i class="fa fa-instagram"></i>
                         </a>
@@ -62,8 +60,7 @@
                             href="{{ $user->social_links->github_url }}"
                             target="_blank"
                             class="btn"
-                            data-bgcolor="#15191f"
-                            data-color="#ffffff"
+                            data-color="#000"
                         >
                             <i class="fa fa-github"></i>
                         </a>

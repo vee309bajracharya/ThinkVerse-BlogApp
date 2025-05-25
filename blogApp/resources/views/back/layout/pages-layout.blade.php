@@ -115,14 +115,14 @@
             <div class="right-sidebar-body-content">
                 <h4 class="weight-600 font-18 pb-10">Header Background</h4>
                 <div class="sidebar-btn-group pb-30 mb-10">
-                    <a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
+                    <a href="javascript:void(0);" class="btn btn-outline-primary header-white">White</a>
                     <a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
                 </div>
 
                 <h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
                 <div class="sidebar-btn-group pb-30 mb-10">
                     <a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light">White</a>
-                    <a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
+                    <a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark">Dark</a>
                 </div>
 
                 <div class="reset-options pt-30 text-center">
@@ -150,7 +150,7 @@
             <div class="sidebar-menu">
                 <ul id="accordion-menu">
                     <li>
-                        <a href="{{ route('user.dashboard') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('user.dashboard') }}" class="dropdown-toggle no-arrow {{Route::is('user.dashboard') ? 'active' : ''}}">
                             <span class="micon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -184,7 +184,7 @@
 
 
                     <li>
-                        <a href="{{ route('user.categories') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('user.categories') }}" class="dropdown-toggle no-arrow {{Route::is('user.categories') ? 'active' : ''}}">
                             <span class="micon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -203,7 +203,7 @@
                         <div class="sidebar-small-cap">SETTINGS</div>
                     </li>
                     <li>
-                        <a href="{{ route('user.profile') }}" class='dropdown-toggle no-arrow'>
+                        <a href="{{ route('user.profile') }}" class='dropdown-toggle no-arrow {{Route::is('user.profile') ? 'active' : ''}}'>
                             <span class="micon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -258,11 +258,9 @@
     <script src="{{ asset('backend/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('backend/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('backend/vendors/scripts/layout-settings.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="/extr-assets/jquery-ui-1.14.1/jquery-ui.min.js"></script>
    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     {{-- custom js --}}
     @stack('scripts')

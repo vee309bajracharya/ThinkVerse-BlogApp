@@ -5,13 +5,23 @@ namespace App\Livewire\User;
 use Livewire\Component;
 use App\Models\ParentCategory;
 use App\Models\Category;
+use Livewire\WithPagination;
 
 class Categories extends Component
 {
+    use WithPagination;
+    // parent category
     public $isUpdateParentCategoryMode = false;
     public $pcategory_id, $pcategory_name;
+
+    // category
     public $isUpdateCategoryMode = false;
     public $category_id, $parent = 0, $category_name;
+
+    //multiple pagination
+    public $pcategoriesPerPage = 4;
+    public $categoriesPerPage = 2;
+
 
 
 
@@ -217,8 +227,8 @@ class Categories extends Component
     public function render()
     {
         return view('livewire.user.categories',[
-            'pcategories'=> ParentCategory::orderBy('ordering','asc')->get(),
-            'categories'=>Category::orderBy('ordering','asc')->get(),
+            'pcategories'=> ParentCategory::orderBy('ordering','asc')->paginate($this->pcategoriesPerPage,['*'],'pcat_page'),
+            'categories'=>Category::orderBy('ordering','asc')->paginate($this->categoriesPerPage,['*'],'cat_page'),
             'showToast' => $this->showToast,
             'toastType' => $this->toastType,
             'toastMessage' => $this->toastMessage
