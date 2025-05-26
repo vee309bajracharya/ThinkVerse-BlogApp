@@ -21,6 +21,12 @@ class AdminController extends Controller
         return redirect()->route('admin.login')->with('success', 'Logged out successfully.');
     }
 
+    //categories
+    public function categoriesPage(Request $request){
+        $data= ['pageTitle'=> 'Manage Categories'];
+        return view('back.pages.admin.categories_page', $data);
+    }
+
 
 
 }

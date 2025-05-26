@@ -39,7 +39,6 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/dashboard', 'userDashboard')->name('dashboard');
             Route::post('/logout', 'logoutHandler')->name('logout');
             Route::get('/profile', 'profileView')->name('profile');
-            Route::get('/categories', 'categoriesPage')->name('categories');
         });
     });
 });
@@ -58,6 +57,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::controller(AdminController::class)->group(function(){
             Route::get('/dashboard', 'adminDashboard')->name('admin-dashboard');
             Route::post('/logout', 'logoutHandler')->name('logout');
+            Route::get('/categories', 'categoriesPage')->name('categories');
+
         });
     });
 });

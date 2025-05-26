@@ -3,5 +3,5 @@
 @section('adminPageTitle', isset($pageTitle) ? $pageTitle : 'Admin Dashboard')
 
 @section('content')
-    Page Content here
+    Admin Dashboard content
 @endsection

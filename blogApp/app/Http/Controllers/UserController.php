@@ -29,12 +29,6 @@ class UserController extends Controller
         //user profile
         public function profileView(Request $request){
             $data = ['pageTitle'=> 'User Profile'];
-            return view('back.pages.profile', $data);
-        }
-
-        //categories
-        public function categoriesPage(Request $request){
-            $data= ['pageTitle'=> 'Manage Categories'];
-            return view('back.pages.categories_page', $data);
+            return view('back.pages.user.profile', $data);
         }
 }
