@@ -150,7 +150,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
+                        <a href="javascript:;" class="dropdown-toggle {{Route::is('user.add_post') || Route::is('user.posts') ? 'active' : ''}}">
                             <span class="micon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -163,8 +163,8 @@
                             <span>Posts</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="basic-table.html">Post 1</a></li>
-                            <li><a href="datatable.html">Post 2</a></li>
+                            <li><a href="{{route('user.add_post')}}" class="{{Route::is('user.add_post') ? 'active' : ''}}">New</a></li>
+                            <li><a href="{{route('user.posts')}}" class="{{Route::is('user.posts') ? 'active' : ''}}">Posts</a></li>
                         </ul>
                     </li>
 

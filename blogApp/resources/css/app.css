@@ -41,4 +41,7 @@
     .primaryBtn{
         @apply w-full bg-[var(--btn1)] text-white py-2 rounded-lg text-lg font-medium hover:opacity-90 transition cursor-pointer;
     }
+    .error-text{
+        @apply text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1;
+    }
 }

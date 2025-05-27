@@ -2244,6 +2244,13 @@ body.IE .register-page-wrap .container {
     display: none;
     text-align: center;
 }
+.error-text {
+    font-size: 0.875rem;
+    color: var(--danger);
+    font-weight: 500;
+    transition: opacity 0.5s;
+    margin-top: 0.25rem;
+}
 .error-page h1,
 .error-page-wrap {
     font-size: 16px;
@@ -3078,7 +3085,7 @@ body.IE .register-page-wrap .container {
     font-family: Ionicons;
     font-size: 18px;
     line-height: 1;
-    color: #1061e4;
+    color: #fa6f43;
     position: absolute;
     right: 0;
     top: 0;
@@ -3250,14 +3257,14 @@ body.IE .register-page-wrap .container {
     padding: 30px 20px;
     background: #e7eef0;
     position: relative;
-    border-bottom: 2px dashed #2976aa;
+    border-bottom: 2px dashed #fa6f43;
 }
 .task-list-form > ul > li .remove-task {
     position: absolute;
     right: 22px;
     top: 3px;
     font-size: 18px;
-    color: #2976aa;
+    color: #fa6f43;
 }
 .task-list-form .form-control {
     font-weight: 400;
@@ -3275,7 +3282,7 @@ body.IE .register-page-wrap .container {
 .add-more-task a {
     display: inline-block;
     padding: 10px;
-    color: #2976aa;
+    color: #fa6f43;
 }
 
 .profile-timeline .timeline-month {

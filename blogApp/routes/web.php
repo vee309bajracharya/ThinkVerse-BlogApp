@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,10 +36,17 @@ Route::prefix('user')->name('user.')->group(function(){
     });
 
     Route::middleware(['auth','preventBackHistory'])->group(function(){
+
         Route::controller(UserController::class)->group(function(){
             Route::get('/dashboard', 'userDashboard')->name('dashboard');
             Route::post('/logout', 'logoutHandler')->name('logout');
             Route::get('/profile', 'profileView')->name('profile');
+        });
+
+        Route::controller(PostController::class)->group(function(){
+            Route::get('/post/new','addPost')->name('add_post');
+            Route::post('/post/create','createPost')->name('create_post');
+            Route::get('/posts','allPosts')->name('posts');
         });
     });
 });
