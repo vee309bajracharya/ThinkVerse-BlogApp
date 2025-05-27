@@ -39,6 +39,7 @@
                 <section class="card card-box my-2">
                     <div class="card-body">
 
+                        {{-- post top section --}}
                         <div class="form-group">
                             <label for="title"><b>Title</b></label>
                             <input type="text" class="form-control" name="title" placeholder="Enter Post Title">
@@ -54,6 +55,7 @@
                     </div>
                 </section>
 
+                {{-- post bottom section --}}
                 <section class="card card-box my-2">
                     <div class="card-header weight-500">SEO</div>
                     <div class="card-body">
@@ -75,7 +77,7 @@
                 </section>
             </section>
 
-
+            {{-- post right section --}}
             <section class="col-md-3">
                 <section class="card card-box mb-2">
                     <section class="card-body">
