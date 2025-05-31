@@ -48,7 +48,7 @@
 
                         <div class="form-group">
                             <label for="content"><b>Content</b></label>
-                            <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Enter post content"></textarea>
+                            <textarea name="content" id="content" cols="30" rows="10" class="ckeditor form-control" placeholder="Enter post content"></textarea>
                             <span class="text-danger error-text content_error"></span>
 
                         </div>
@@ -148,6 +148,8 @@
 @push('scripts')
     <script src="{{asset('/backend/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
 
+    {{-- ckeditor link --}}
+    <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
     
 
     <script>
@@ -167,7 +169,9 @@
         $('#addPostForm').on('submit', function(e){
             e.preventDefault();
             var form = this;
+            var content = CKEDITOR.instances.content.getData();
             var formdata = new FormData(form);
+            formdata.append('content',content);
 
             $.ajax({
                 url:$(form).attr('action'),
@@ -182,6 +186,7 @@
                 success:function(data){
                     if(data.status == 1){
                         $(form)[0].reset();
+                        CKEDITOR.instances.content.setData('');
                         $('input[name="tags"]').tagsinput('removeAll');
                         $().notifa({
                             vers:2,
