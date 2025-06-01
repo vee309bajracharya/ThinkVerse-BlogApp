@@ -25,4 +25,8 @@ class Category extends Model
     public function parent_category(){
         return $this->hasOne(ParentCategory::class,'id','parent');
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class,'category','id');
+    }
 }
