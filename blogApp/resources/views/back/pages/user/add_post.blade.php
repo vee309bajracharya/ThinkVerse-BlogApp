@@ -188,6 +188,7 @@
                         $(form)[0].reset();
                         CKEDITOR.instances.content.setData('');
                         $('input[name="tags"]').tagsinput('removeAll');
+                        $('#featured_image_preview').attr('src','');
                         $().notifa({
                             vers:2,
                             cssClass: 'success',
