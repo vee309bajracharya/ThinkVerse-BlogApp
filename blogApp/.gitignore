@@ -21,5 +21,10 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-/public/backend/src/plugins/
-/public/ckeditor
+/public/backend/src/plugins/*
+!/public/backend/src/plugins/bootstrap-tagsinput
+/public/ckeditor/*
+!/public/ckeditor/ckeditor.js
+!/public/ckeditor/config.js
+/resources/views/vendor/elfinder/*
+!/resources/views/vendor/elfinder/ckeditor4.blade.php
