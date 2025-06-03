@@ -90,7 +90,7 @@
                                 <option value="">
                                     Choose
                                 </option>
-                                {{!! $categories_html !!}}
+                                {{!!$categories_html!!}}
                             </select>
                             <span class="text-danger error-text category_error"></span>
                         </div>

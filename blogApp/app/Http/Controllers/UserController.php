@@ -38,8 +38,7 @@ class UserController extends Controller
         }
         
         //user profile update
-        public function updateProfile(Request $request)
-        {
+        public function updateProfile(Request $request){
             $user = auth()->user();
         
             if ($request->hasFile('profile_picture')) {

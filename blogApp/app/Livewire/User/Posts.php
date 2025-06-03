@@ -2,11 +2,12 @@
 
 namespace App\Livewire\User;
 
-use Livewire\Component;
 use App\Models\Post;
-use Livewire\WithPagination;
+use Livewire\Component;
 use App\Models\Category;
+use Livewire\WithPagination;
 use App\Models\ParentCategory;
+use Illuminate\Support\Facades\File;
 
 class Posts extends Component
 {
@@ -49,9 +50,24 @@ class Posts extends Component
         $this->post_visibility = $this->visibility == 'public' ? 1 : 0;
     }
 
+    public function deletePost($id){
+        $post = Post::findOrFail($id);
 
+        // Delete the featured image file if it exists
+        $imagePath = public_path('images/posts/' . $post->featured_image);
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
 
+        $deleted = $post->delete();
 
+        if ($deleted) {
+            session()->flash('success', 'Post deleted successfully!');
+        } else {
+            session()->flash('error', 'Failed to delete the post.');
+        }
+        $this->resetPage();
+    }
 
     public function mount(){
         $this->post_visibility = $this->visibility == 'public' ? 1 : 0;

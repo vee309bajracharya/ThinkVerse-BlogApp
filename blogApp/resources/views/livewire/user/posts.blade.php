@@ -1,4 +1,15 @@
 <div>
+    @if (session()->has('success'))
+    <div class="alert alert-success mt-2 rounded-md w-72">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if (session()->has('error'))
+        <div class="alert alert-danger mt-2 rounded-md w-72">
+            {{ session('error') }}
+        </div>
+    @endif
 {{-- fetch all posts --}}
 <section class="mb-30">
     <div class="row ml-1">
@@ -95,7 +106,7 @@
                             <a href="{{route('user.edit_post',['id'=>$item->id])}}" data-color="#265ed7" style="color: rgb(38,94,215)">
                                 <i class="icon-copy dw dw-edit2"></i>
                             </a>
-                            <a href="" data-color="#e95959" style="color: rgb(233,94,215)">
+                            <a href="javascript:;" wire:click="deletePost({{$item->id}})" data-color="#e95959" style="color: rgb(233,94,215)">
                                 <i class="icon-copy dw dw-delete-1"></i>
                             </a>
                         </div>
