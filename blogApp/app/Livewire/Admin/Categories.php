@@ -200,7 +200,8 @@ class Categories extends Component
     public function deleteCategory($id)
     {
         $category = Category::findOrFail($id);
-            if ($category->posts()->count() > 0) {
+    
+        if ($category->posts()->count() > 0) {
             $count = $category->posts()->count();
             $this->dispatch('showToast', [
                 'type' => 'error',
@@ -208,7 +209,8 @@ class Categories extends Component
             ]);
             return;
         }
-            try {
+    
+        try {
             $category->delete();
             $this->dispatch('showToast', [
                 'type' => 'success',

@@ -27,6 +27,14 @@ class AdminController extends Controller
         return view('back.pages.admin.categories_page', $data);
     }
 
+    //all users list
+    public function usersList(Request $request){
+        $data = [
+            'pageTitle'=> 'Users List'
+        ];
+        return view('back.pages.admin.users-list',$data);
+    }
+
 
 
 }

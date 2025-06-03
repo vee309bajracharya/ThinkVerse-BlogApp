@@ -85,9 +85,7 @@
                 <tr>
                     <td scope="row">{{$item->id}}</td>
                     <td>
-                        <a href="">
                             <img src="{{ asset('images/posts/' . $item->featured_image) }}" alt="" srcset="" width="300" class="rounded-md object-cover">
-                        </a>
                     </td>
                     <td>{{$item->title}}</td>
                     {{-- <td>{{$item->author->name}}</td> --}}

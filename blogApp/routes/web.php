@@ -70,6 +70,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/dashboard', 'adminDashboard')->name('admin-dashboard');
             Route::post('/logout', 'logoutHandler')->name('logout');
             Route::get('/categories', 'categoriesPage')->name('categories');
+            Route::get('/allUsers','usersList')->name('users-list');
 
         });
     });
