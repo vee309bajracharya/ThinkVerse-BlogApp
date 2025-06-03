@@ -197,14 +197,31 @@ class Categories extends Component
         }
     }
 
-    public function deleteCategory($id){
-        try {
-            Category::findOrFail($id)->delete();
-            $this->showToast('success', 'Category deleted');
+    public function deleteCategory($id)
+    {
+        $category = Category::findOrFail($id);
+            if ($category->posts()->count() > 0) {
+            $count = $category->posts()->count();
+            $this->dispatch('showToast', [
+                'type' => 'error',
+                'message' => "This category has ({$count}) related post(s). Cannot be deleted."
+            ]);
+            return;
+        }
+            try {
+            $category->delete();
+            $this->dispatch('showToast', [
+                'type' => 'success',
+                'message' => 'Category deleted.'
+            ]);
         } catch (\Exception $e) {
-            $this->showToast('error', 'Failed to delete');
+            $this->dispatch('showToast', [
+                'type' => 'error',
+                'message' => 'Failed to delete category.'
+            ]);
         }
     }
+    
   
     public function showCategoryModalForm(){
         $this->resetErrorBag();

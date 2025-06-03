@@ -3,7 +3,7 @@
 
         {{-- parent categories --}}
         <section class="col-12">
-            <section class="clearfix bg-[var(--second-white)] p-3 rounded-md">
+            <section class="clearfix p-3 rounded-md">
                 <div class="pull-left">
                     <h4 class="h4 text-blue">Parent Categories</h4>
                 </div>
@@ -11,8 +11,8 @@
                     <a href="javascript:;" class="btn btnPers btn-sm" wire:click="addParentCategory()">Add P. category</a>
                 </div>
 
-                <section class="table-resonsive mt-4">
-                    <table class="table table-bordered mt-5">
+                <section class="table-resonsive mt-4 rounded-md">
+                    <table class="table table-bordered mt-5 table-dark">
                         <thread class="bg-secondary text-white">
                             <th>#</th>
                             <th>Name</th>
@@ -59,7 +59,7 @@
 
         {{-- categories --}}
         <section class="col-12 mt-5">
-            <div class="clearfix bg-[var(--second-white)] p-3 rounded-md">
+            <div class="clearfix p-3 rounded-md">
                 <div class="pull-left">
                     <h4 class="h4 text-blue">Categories</h4>
                 </div>
@@ -68,7 +68,7 @@
                 </div>
 
                 <section class="table-resonsive mt-4">
-                    <table class="table table-bordered mt-5">
+                    <table class="table table-bordered mt-5 table-dark">
                         <thread class="bg-secondary text-white">
                             <th>#</th>
                             <th>Name</th>
@@ -83,7 +83,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ !is_null($item->parent_category) ? $item->parent_category->name : '-' }}
                                     </td>
-                                    <td>-</td>
+                                    <td>{{$item->posts->count()}}</td>
                                     <td>
                                         <div class="table-actions">
                                             <a href="javascript:;" wire:click="editCategory({{ $item->id }})"
