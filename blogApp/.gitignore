@@ -28,3 +28,4 @@ yarn-error.log
 !/public/ckeditor/config.js
 /resources/views/vendor/elfinder/*
 !/resources/views/vendor/elfinder/ckeditor4.blade.php
+/public/images/users

@@ -1331,9 +1331,8 @@ table.dataTable.dtr-inline.collapsed
 }
 .user-info-dropdown .dropdown-toggle .user-icon {
     width: 52px;
-    height: 52px;
+    height: 60px !important;
     font-size: 24px;
-    background: #ebeff3;
     color: #fa6f43;
     line-height: 52px;
     text-align: center;
@@ -3101,10 +3100,13 @@ body.IE .register-page-wrap .container {
     text-align: center;
 }
 .profile-photo {
-    width: 160px;
-    height: 160px;
+    width: 20rem;
+    height:auto;
     margin: 0 auto 15px;
     position: relative;
+}
+.nav-img{
+    height:52px;
 }
 .profile-photo .edit-avatar {
     position: absolute;

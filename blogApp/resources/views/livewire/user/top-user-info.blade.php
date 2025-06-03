@@ -1,8 +1,8 @@
 <div class="user-info-dropdown">
     <div class="dropdown">
         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-            <span class="user-icon">
-                <img src="{{ $user->picture }}" alt="" />
+            <span class="user-icon nav-img">
+                <img src="{{ $user->picture }}" alt="" class="rounded-full object-cover" />
             </span>
             <span class="user-name">{{ $user->name }}</span>
         </a>

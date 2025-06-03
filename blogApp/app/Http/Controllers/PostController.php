@@ -87,4 +87,72 @@ class PostController extends Controller
         $data = ['pageTitle'=> 'Posts'];
         return view('back.pages.user.posts',$data);
     }
+
+    //editPosts
+    public function editPost(Request $request, $id=null){
+        $post = Post::findOrFail($id);
+        $categories_html = '';
+        $pcategories = ParentCategory::whereHas('children')->orderBy('name','asc')->get();
+        $categories = Category::where('parent',0)->orderBy('name','asc')->get();
+        if(count($pcategories)>0){
+            foreach($pcategories as $item){
+                $categories_html.='<optgroup label="'.$item->name.'" >';
+                    foreach($item->children as $category){
+                        $selected = $category->id == $post->category ? 'selected' : '';
+                        $categories_html.='<option value="'.$category->id.'"
+                        '.$selected.'>'.$category->name.'</option>';
+                    }
+                $categories_html.='</optgroup>';
+            }
+        }
+
+        if(count($categories)>0){
+            foreach($categories as $item){
+                $selected = $item->id == $post->category ? 'selected':'';
+                $categories_html.= '<option value="'.$item->id.'" '.$selected.'>'.$item->name.'</option>';
+            }
+        }
+
+        $data = [
+            'pageTitle'=> 'Edit',
+            'post'=>$post,
+            'categories_html'=>$categories_html
+        ];
+        return view('back.pages.user.edit_post',$data);
+    }
+
+    //updatePost
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+    
+        $user = auth()->user();
+    
+        if ($request->hasFile('profile_picture')) {
+            $path = 'images/users/';
+            $file = $request->file('profile_picture');
+            $filename = time() . '_' . $file->getClientOriginalName();
+    
+            $upload = $file->move(public_path($path), $filename);
+    
+            if ($upload) {
+                // Delete old profile image if exists (get raw value, not URL)
+                $oldFilename = $user->getRawOriginal('picture');
+                if ($oldFilename && file_exists(public_path($path . $oldFilename))) {
+                    unlink(public_path($path . $oldFilename));
+                }
+    
+                // ✅ Save to the actual database field
+                $user->picture = $filename;
+            } else {
+                return response()->json(['status' => 0, 'message' => 'Error uploading profile picture']);
+            }
+        }
+            $user->save();
+    
+        return response()->json(['status' => 1, 'message' => 'Profile updated successfully']);
+    }
+    
 }

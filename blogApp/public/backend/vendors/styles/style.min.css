@@ -1331,9 +1331,8 @@ table.dataTable.dtr-inline.collapsed
 }
 .user-info-dropdown .dropdown-toggle .user-icon {
     width: 52px;
-    height: 52px;
+    height: 60px !important;
     font-size: 24px;
-    background: #ebeff3;
     color: #fa6f43;
     line-height: 52px;
     text-align: center;

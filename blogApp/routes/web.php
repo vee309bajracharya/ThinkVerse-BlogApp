@@ -41,12 +41,16 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/dashboard', 'userDashboard')->name('dashboard');
             Route::post('/logout', 'logoutHandler')->name('logout');
             Route::get('/profile', 'profileView')->name('profile');
+            Route::get('/profile/edit','editProfile')->name('edit_profile');
+            Route::post('/profile/update','updateProfile')->name('update_profile');
         });
 
         Route::controller(PostController::class)->group(function(){
             Route::get('/post/new','addPost')->name('add_post');
             Route::post('/post/create','createPost')->name('create_post');
             Route::get('/posts','allPosts')->name('posts');
+            Route::get('/post/{id}/edit','editPost')->name('edit_post');
+            Route::post('/post/update','updatePost')->name('update_post');
         });
     });
 });
