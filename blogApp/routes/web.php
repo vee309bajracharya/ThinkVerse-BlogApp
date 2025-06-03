@@ -71,6 +71,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::post('/logout', 'logoutHandler')->name('logout');
             Route::get('/categories', 'categoriesPage')->name('categories');
             Route::get('/allUsers','usersList')->name('users-list');
+            Route::get('/all-posts','usersPosts')->name('users-posts');
 
         });
     });

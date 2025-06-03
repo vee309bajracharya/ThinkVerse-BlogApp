@@ -10,7 +10,7 @@ class AdminController extends Controller
     //admin dashboard
     public function adminDashboard(Request $request){
         $data = [
-            'pageTitle'=> 'Admin Dashboard'
+            'adminPageTitle'=> 'Admin Dashboard'
         ];
         return view('back.pages.admin.admin-dashboard', $data);
     }
@@ -23,16 +23,22 @@ class AdminController extends Controller
 
     //categories
     public function categoriesPage(Request $request){
-        $data= ['pageTitle'=> 'Manage Categories'];
+        $data= ['adminPageTitle'=> 'Manage Categories'];
         return view('back.pages.admin.categories_page', $data);
     }
 
     //all users list
     public function usersList(Request $request){
         $data = [
-            'pageTitle'=> 'Users List'
+            'adminPageTitle'=> 'Users List'
         ];
         return view('back.pages.admin.users-list',$data);
+    }
+
+    //users posts
+    public function usersPosts(Request $request){
+        $data=['adminPageTitle'=> 'Users Posts List'];
+        return view('back.pages.admin.users-posts');
     }
 
 

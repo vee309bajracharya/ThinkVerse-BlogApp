@@ -1,6 +1,6 @@
 @extends('back.layout.auth-layout')
 
-@section('pageTitle', $pageTitle ?? 'Login-ThinkVerse')
+@section('adminPageTitle', $pageTitle ?? 'Login-ThinkVerse')
 
 @section('content')
 
