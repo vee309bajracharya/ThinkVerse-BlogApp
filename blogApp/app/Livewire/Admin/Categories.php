@@ -19,8 +19,8 @@ class Categories extends Component
     public $category_id, $parent = 0, $category_name;
 
     //multiple pagination
-    public $pcategoriesPerPage = 4;
-    public $categoriesPerPage = 2;
+    public $pcategoriesPerPage = 6;
+    public $categoriesPerPage = 6;
 
     public $showToast = false;
     public $toastType = 'info';

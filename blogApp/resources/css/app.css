@@ -34,6 +34,22 @@
 }
 
 @layer components{
+
+      /* scrollbar */
+    ::-webkit-scrollbar{
+        @apply w-[0.2rem] h-[.5rem];
+    }
+    
+    ::-webkit-scrollbar-track{
+        @apply bg-transparent;
+    }
+    ::-webkit-scrollbar-thumb{
+        @apply bg-orange-600;
+    }
+    *::selection{
+        @apply bg-orange-600; text-white;
+    }
+
     .form-input{
         @apply flex items-center rounded-lg overflow-hidden bg-[var(--input-bg)];
     }

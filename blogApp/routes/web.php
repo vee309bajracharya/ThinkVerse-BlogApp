@@ -50,7 +50,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('/post/create','createPost')->name('create_post');
             Route::get('/posts','allPosts')->name('posts');
             Route::get('/post/{id}/edit','editPost')->name('edit_post');
-            Route::post('/post/update','updatePost')->name('update_post');
+            Route::post('/post/update', 'updatePost')->name('update_post');
         });
     });
 });

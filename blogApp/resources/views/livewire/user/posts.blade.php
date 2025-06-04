@@ -21,20 +21,6 @@
             <input wire:model.live="search" type="text" id="search" class="form-control" placeholder="Search posts">
         </div>
 
-        {{-- author name --}}
-        {{-- @if (auth()->user()->type == 'admin')
-        <div class="col-md-2">
-            <label for="author"><b class="text-secondary">Author</b></label>
-            <select wire:model.live="author" name="" id="author" class="custom-select form-control">
-                <option value="">No author selected</option>
-                @foreach (App\Models\User::whereHas('posts')->get() as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
-                
-            </select>
-        </div>
-        @endif --}}
-
         {{-- category --}}
         <div class="col-md-3">
             <label for="category"><b>Category</b></label>
@@ -70,10 +56,9 @@
     <div class="table-responsive my-3 rounded-lg rounded-bl-md rounded-br-md">
         <table class="table table-striped table-auto table-sm table-bordered table-dark">
             <thead class="bg-secondary text-white">
-                <th scope="col">ID</th>
+                {{-- <th scope="col">ID</th> --}}
                 <th scope="col">Image</th>
                 <th scope="col">Title</th>
-                {{-- <th scope="col">Author</th> --}}
                 <th scope="col">Category</th>
                 <th scope="col">Visibility</th>
                 <th scope="col">Action</th>
@@ -83,12 +68,11 @@
                 @forelse ($posts as $item)
 
                 <tr>
-                    <td scope="row">{{$item->id}}</td>
+                    {{-- <td scope="row">{{$item->id}}</td> --}}
                     <td>
                             <img src="{{ asset('images/posts/' . $item->featured_image) }}" alt="" srcset="" width="300" class="rounded-md object-cover">
                     </td>
                     <td>{{$item->title}}</td>
-                    {{-- <td>{{$item->author->name}}</td> --}}
                     <td>{{$item->post_category->name}}</td>
                     <td>
                         @if ($item->visibility == 1)
@@ -112,9 +96,7 @@
                 </tr>              
                 @empty
                 <tr>
-                    <td colspan="7">
-                        <span class="text-danger">No post found!</span>
-                    </td>
+                    <td colspan="6" class="text-center text-danger">No post found!</td>
                 </tr>
                 @endforelse 
     
