@@ -17,8 +17,8 @@
 	<link rel="stylesheet" href="/frontend/vendors/animate-css/animate.css">
 	<link rel="stylesheet" href="/frontend/vendors/jquery-ui/jquery-ui.css">
 	<!-- main css -->
-	<link rel="stylesheet" href="/frontend/css/style.css">
-	<link rel="stylesheet" href="/frontend/css/responsive.css">
+	<link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     {{-- custom styles --}}
     @stack('stylesheets')
 </head>
