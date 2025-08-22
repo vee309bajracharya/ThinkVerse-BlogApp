@@ -126,16 +126,8 @@
     <script src="/frontend/js/popper.js"></script>
     <script src="/frontend/js/bootstrap.min.js"></script>
     <script src="/frontend/js/stellar.js"></script>
-    <script src="/frontend/vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="/frontend/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="/frontend/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="/frontend/vendors/isotope/isotope-min.js"></script>
-    <script src="/frontend/vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="/frontend/vendors/jquery-ui/jquery-ui.js"></script>
-    <script src="/frontend/js/jquery.ajaxchimp.min.js"></script>
     <script src="/frontend/js/mail-script.js"></script>
     <script src="/frontend/js/wow.min.js"></script>
-    <script src="/frontend/https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
     <script src="/frontend/js/theme.js"></script>
     @stack('scripts')
 </body>
