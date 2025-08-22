@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+
+    /* font family */
+    /* --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji'; */
+
+    /* colors 
+        HEX and oklch (Lightness, Chroma, Hue)
+    */
+    --primary-color : #fa6f43;
+    --loader: #fb6b46;
+    --btn1: #fc604b;
+    --main-bg: oklch(0.97 0.0352 61.56);
+    --border-line: rgb(245, 81, 30);
+    --input-bg: #f1e3e0;
+    --second-white: #F8F8FF;
+    --danger: oklch(0.59 0.2908 18.64);
+
+
+    /* responsive 
+        xs - 200px (12.5rem)
+    */
+    --breakpoint-xs: 12.5rem;
+
+    /* custom classes */
+
+}
+
+@layer components{
+
+      /* scrollbar */
+    ::-webkit-scrollbar{
+        @apply w-[0.2rem] h-[.5rem];
+    }
+    
+    ::-webkit-scrollbar-track{
+        @apply bg-transparent;
+    }
+    ::-webkit-scrollbar-thumb{
+        @apply bg-orange-600;
+    }
+    *::selection{
+        @apply bg-orange-600 text-white;
+    }
+
+    .form-input{
+        @apply flex items-center rounded-lg overflow-hidden bg-[var(--input-bg)];
+    }
+
+    .primaryBtn{
+        @apply w-full bg-[var(--btn1)] text-white py-2 rounded-lg text-lg font-medium hover:opacity-90 transition cursor-pointer;
+    }
+    .error-text{
+        @apply text-sm text-[var(--danger)] font-medium transition-opacity duration-500 mt-1;
+    }
+    .title-color{
+        @apply text-[var(--primary-color)] font-semibold text-2xl;
+    }
+}

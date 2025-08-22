@@ -4,66 +4,82 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="frontend/img/title-icon.svg" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{asset('frontend/img/title-icon.svg')}}" type="image/png">
     <title>@yield('pageTitle')</title>
 
     @vite('resources/css/frontend-tailwind.css')
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/frontend/css/bootstrap.css">
-    <link rel="stylesheet" href="/frontend/vendors/linericon/style.css">
     <link rel="stylesheet" href="/frontend/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/frontend/vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="/frontend/vendors/lightbox/simpleLightbox.css">
-    <link rel="stylesheet" href="/frontend/vendors/nice-select/css/nice-select.css">
-    <link rel="stylesheet" href="/frontend/vendors/animate-css/animate.css">
     <link rel="stylesheet" href="/frontend/vendors/jquery-ui/jquery-ui.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- main css -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     {{-- custom styles --}}
     @stack('stylesheets')
 
+    {{-- <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> --}}
 
 </head>
 
 <body class="bg-[#F8F8FF]">
 
     <!--================Header Menu Area =================-->
-	<header class="shadow-md sticky top-0 z-50 bg-gray-100">
-		<div class="container mx-auto px-4">
-			<div class="flex items-center justify-between py-3">
-				<!-- Logo -->
-				<a href="{{ route('home') }}" class="flex items-center">
-					<img src="/frontend/img/ThinkVerse.png" alt="ThinkVerse" class="w-52">
-				</a>
-	
-				<!-- Desktop Navigation -->
-				<nav class="hidden md:block hover:decoration-none">
-					{!! navigations() !!}
-				</nav>
-	
-				<!-- Mobile Menu Button -->
-				<button id="mobile-menu-button" class="md:hidden p-2 focus:outline-none">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-					</svg>
-				</button>
-			</div>
-	
-			<!-- Mobile Menu (Hidden by default) -->
-			<div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-				{!! navigations(true) !!}
-			</div>
-		</div>
-	</header>
-	
-	<script>
-		document.getElementById('mobile-menu-button').addEventListener('click', function() {
-			const menu = document.getElementById('mobile-menu');
-			menu.classList.toggle('hidden');
-		});
-	</script>
+    <header class="shadow-md sticky top-0 z-[999] bg-gray-100">
+        <div class="max-w-[1400px] mx-auto px-1">
+            <div class="flex items-center justify-between py-3">
+                <!-- Logo -->
+                <a href="{{ route('home') }}" class="flex items-center">
+                    <img src="/frontend/img/ThinkVerse.png" alt="ThinkVerse" class="w-52">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:block hover:decoration-none">
+                    {!! navigations() !!}
+                </nav>
+
+                <!-- User Dropdown Menu -->
+                @auth
+                <div class="relative inline-block text-left">
+                    <button type="button" class="flex items-center text-sm rounded-full focus:outline-none"
+                        id="userDropdownToggle">
+                        <img class="w-12 h-12 rounded-full object-cover"
+                            src="{{ auth()->user()->picture }}" alt="user photo">
+                    </button>
+                
+                    <div id="userDropdown"
+                        class="hidden absolute right-0 mt-2 w-48 bg-[var(--primary-color)] text-white rounded-lg shadow-lg z-[9999]">
+                        <ul class="py-2 space-y-1 text-sm">
+                            <li>
+                                <a href="{{ route('user.dashboard') }}"
+                                    class="user-nav">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('author_posts',['username'=> Auth::user()->username]) }}"
+                                    class="user-nav">Profile</a>
+                            </li>
+                            <li>
+                                <form id="front-logout" action="{{ route('user.logout', ['source' => 'front']) }}"
+                                    method="POST" class="w-full">
+                                    @csrf
+                                    <button type="submit"
+                                        class="user-nav text-left w-full cursor-pointer">
+                                        Sign out
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                @endauth
+                
+            </div>
+        </div>
+
+
+    </header>
 
 
     <!--================ Header Menu Area =================-->
@@ -119,16 +135,34 @@
         </a>
     </div>
     <!-- ####################### End Scroll to Top Area ####################### -->
+    <script>
+        const toggleButton = document.getElementById('userDropdownToggle');
+        const dropdownMenu = document.getElementById('userDropdown');
+    
+        toggleButton.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    
+        // Optional: Hide dropdown on outside click
+        window.addEventListener('click', (e) => {
+            if (!toggleButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    </script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
+    
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/frontend/js/jquery-3.2.1.min.js"></script>
     <script src="/frontend/js/popper.js"></script>
     <script src="/frontend/js/bootstrap.min.js"></script>
-    <script src="/frontend/js/stellar.js"></script>
-    <script src="/frontend/js/mail-script.js"></script>
-    <script src="/frontend/js/wow.min.js"></script>
-    <script src="/frontend/js/theme.js"></script>
+    <script src="/frontend/vendors/jquery-ui/jquery-ui.js"></script>
+
+
     @stack('scripts')
 </body>
 
