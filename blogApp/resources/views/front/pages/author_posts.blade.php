@@ -11,11 +11,11 @@
             <div class="text-center">
                 <img src="{{ $author->picture }}" alt="User pic" class="w-48 h-48 rounded-full rounded-br-none rounded-bl-none object-cover shadow-md mx-auto">
     
-                <h3 class="mt-4 text-5xl font-semibold text-gray-800 font-bebas">
+                <h3 class="mt-4 text-5xl font-semibol font-bebas">
                     {{ $author->name }}
                 </h3>
                 <p class="text-gray-600 mt-2 font-semibold">{{ $author->username }}</p>
-                <p class="text-gray-700 max-w-xl mx-auto font-roboto">{{ $author->bio }}</p>
+                <p class="max-w-xl mx-auto font-roboto">{{ $author->bio }}</p>
     
                 @if ($author->social_links)
                     <div class="flex justify-center space-x-4 mt-4 text-xl text-gray-600 dark:text-gray-300">
@@ -44,12 +44,12 @@
             {{-- posts section --}}
             <section class="pt-1">
                 <div class="max-w-[1400px] mx-auto px-4">
-                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Posts by
+                    <h3 class="text-2xl font-semibold mb-6">Posts by
                         <span class="title-color">{{ $author->name }}</span></h3>
         
                     <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-3">
                         @forelse ($posts as $post)
-                            <article class="rounded-lg shadow transition hover:shadow-md">
+                            <article class="rounded-lg shadow transition hover:shadow-md bg-[var(--category-bg)]">
                                 <div class="mb-4">
                                     <img src="{{ asset('images/posts/' . $post->featured_image) }}" alt=""
                                         class="w-full h-48 object-cover rounded-md shadow-sm">

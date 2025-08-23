@@ -18,6 +18,8 @@ body {
   line-height: 26px;
   font-size: 14px;
   font-weight: normal;
+  color: #fff;
+  background: #111827;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -192,7 +194,7 @@ button:focus {
     border-radius: 0px; }
     @media (max-width: 991px) {
       .header_area .navbar {
-        background: #fff; } }
+         } }
     .header_area .navbar .nav .nav-item {
       margin-right: 30px; }
       @media (max-width: 1199px) {
@@ -1012,7 +1014,10 @@ button:focus {
 
 .blog_right_sidebar {
   padding: 10px;
-  background: #f1f9ff; }
+  background: #1f2937; 
+  color: #fff;
+  border-radius: 10px !important;
+}
   @media (max-width: 320px) {
     .blog_right_sidebar {
       padding: 30px 15px; } }
@@ -1029,7 +1034,7 @@ button:focus {
       content: "";
       width: 30px;
       height: 4px;
-      background: #081113;
+      background: #fff;
       position: absolute;
       left: 0px;
       top: 50%;
@@ -1114,7 +1119,6 @@ button:focus {
   .blog_right_sidebar .popular_post_widget .post_item + .post_item {
     margin-top: 20px; }
   .blog_right_sidebar .post_category_widget .cat-list li {
-    border-bottom: 2px dotted #eee;
     transition: all 0.3s ease 0s;
     padding-bottom: 12px; }
     .blog_right_sidebar .post_category_widget .cat-list li a {
@@ -3005,7 +3009,7 @@ h6 {
 /*----------------------------------------------------*/
 /*============== footer-area css ===============*/
 .footer-area {
-  background: #f1f9ff;
+  background: #111827;
   font-size: 16px; }
 
 .single-footer-widget.footer_middle {

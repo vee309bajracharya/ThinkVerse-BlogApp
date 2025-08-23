@@ -27,8 +27,8 @@ body {
     font-family: "Inter", sans-serif;
     font-weight: 400;
     min-height: 100%;
-    color: #031e23;
-    background: oklch(0.97 0.0352 61.56);
+    color: #fff;
+    background: #111827;
 }
 a {
     text-decoration: none;
@@ -74,7 +74,7 @@ h4,
 h5,
 h6 {
     font-weight: 700;
-    color: #202342;
+    color: #fff;
     font-family: "Inter", sans-serif;
 }
 ol,

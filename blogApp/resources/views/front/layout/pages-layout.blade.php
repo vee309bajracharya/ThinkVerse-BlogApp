@@ -24,10 +24,10 @@
 
 </head>
 
-<body class="bg-[#F8F8FF]">
+<body>
 
     <!--================Header Menu Area =================-->
-    <header class="shadow-md sticky top-0 z-[999] bg-gray-100">
+    <header class="shadow-md sticky top-0 z-[999] bg-[var(--dark-bg)]">
         <div class="max-w-[1400px] mx-auto px-1">
             <div class="flex items-center justify-between py-3">
                 <!-- Logo -->
@@ -93,7 +93,7 @@
 
 
     <!--================ start footer Area  =================-->
-    <footer class="footer-area p-4">
+    <footer class="footer-area p-4 bg-[var(--dark-bg)]">
         <div class="container">
 
             <div class="footer-bottom footer_copy">

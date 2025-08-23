@@ -5,7 +5,7 @@
     <div class="max-w-[1400px] mx-auto my-0 py-[3rem] px-[2rem]">
 
         <div class="flex items-center my-3">
-            <h3 class="text-2xl font-semibold">Search results for </h3>
+            <span class="text-2xl font-bold">Search results for </span>
             <span class="ml-2 font-bold text-2xl title-color">{{ $query }}</span>
         </div>
 
@@ -13,7 +13,7 @@
             @if ($posts->count())
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-3">
                     @foreach ($posts as $post)
-                        <article class="rounded-md shadow-md cursor-pointer transition-colors">
+                        <article class="rounded-md cursor-pointer transition-colors shadow hover:shadow-md bg-[var(--category-bg)]">
                             <div class="mb-4">
                                 <img src="{{ asset('images/posts/' . $post->featured_image) }}" alt=""
                                     class="w-full h-48 object-cover rounded-md rounded-br-none rounded-bl-none shadow-sm">

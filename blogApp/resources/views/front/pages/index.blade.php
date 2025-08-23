@@ -12,12 +12,12 @@
                     {{-- Home Banner (Featured Post) --}}
                     @if (!empty(latest_posts(0, 1)))
                         @foreach (latest_posts(0, 1) as $post)
-                            <div class="mb-5">
+                            <div class="mb-5" data-aos="zoom-in">
                                 <img src="{{ $post->featured_image ? asset('images/posts/' . $post->featured_image) : asset('frontend/img/banner/home-banner.jpg') }}"
                                     alt="Post Banner" class="img-fluid rounded shadow-sm mb-3"
                                     style="height: 500px; object-fit: cover; width: 100%;">
-                                <h2 class="font-weight-bold">
-                                    <a href="{{ route('read_post', $post->slug) }}" class="text-dark text-decoration-none">
+                                <h2 class="font-weight-bold text-white">
+                                    <a href="{{ route('read_post', $post->slug) }}" class="text-decoration-none">
                                         {{ $post->title }}
                                     </a>
                                 </h2>
@@ -44,17 +44,17 @@
                     @endif
 
                     {{-- Latest Blog Posts --}}
-                    <h3 class="mb-4">Read the Latest Blogs</h3>
+                    <h3 class="mb-4 text-[#fa6f43]" data-aos="fade-down">Read the Latest Blogs</h3>
                     @if (!empty(latest_posts(0, 3)))
                         @foreach (latest_posts(0, 3) as $post)
-                            <div class="card mb-4 shadow-sm border-0 flex-md-row">
+                            <div class="card mb-4 shadow-sm border-0 flex-md-row" data-aos="fade-down">
                                 <img src="{{ asset('images/posts/' . $post->featured_image) }}"
                                     class="img-fluid rounded-start d-none d-md-block"
                                     style="width: 250px; object-fit: cover;" alt="{{ $post->title }}">
-                                <div class="card-body d-flex flex-column">
+                                <div class="card-body d-flex flex-column bg-[var(--category-bg)] text-white">
                                     <h5>
                                         <a href="{{ route('read_post', $post->slug) }}"
-                                            class="text-dark text-decoration-none">
+                                            class="text-decoration-none">
                                             {{ $post->title }}
                                         </a>
                                     </h5>
@@ -74,7 +74,7 @@
                                             {{ readDuration($post->title, $post->content) }} @choice('min|mins', readDuration($post->title, $post->content))
                                         </li>
                                     </ul>
-                                    <p class="text-muted">{!! Str::ucfirst(words($post->content, 20)) !!}</p>
+                                    <p class="text-white">{!! Str::ucfirst(words($post->content, 20)) !!}</p>
                                     <a href="{{ route('read_post', $post->slug) }}"
                                         class="btn-primary rounded-md px-4 py-2 w-32">Read More</a>
                                 </div>
@@ -84,7 +84,7 @@
                 </div>
 
                 <!-- blog right Sidebar -->
-                <div class="col-lg-4 mt-5 mt-lg-0">
+                <div class="col-lg-4 mt-5 mt-lg-0" data-aos="zoom-in-left">
                     <div class="blog_right_sidebar">
                         {{-- sidebar search here --}}
                         <x-sidebar-search></x-sidebar-search>

@@ -5,12 +5,12 @@
     <div class="max-w-[1400px] mx-auto my-0 py-[3rem] px-[2rem]">
 
         {{-- container --}}
-        <div class="flex sm:flex-col md:flex-row justify-between gap-5">
+        <div class="flex sm:flex-col md:flex-row justify-between gap-5" data-aos="zoom-in">
 
             {{-- left- post section --}}
-            <div class="flex flex-col sm:w-[100%] md:w-[400%]">
+            <div class="flex flex-col col-lg-8">
                 {{-- post title --}}
-                <h1 class="text-xl text-gray-700">{{ $post->title }}</h1>
+                <h1 class="text-xl text-[var(--primary-color)]">{{ $post->title }}</h1>
                 {{-- post details --}}
                 <ul class="list-inline text-muted my-3">
                     <li class="list-inline-item">
@@ -112,7 +112,7 @@
             <h4 class="mt-5 text-2xl font-semibold">You Might Also Like</h4>
             <div class="grid md:grid-cols-3 gap-6 mt-4" >
                 @foreach ($relatedPosts as $rec)
-                    <div class="rounded-lg shadow hover:shadow-md transition duration-300" data-aos="fade-down" data-aos-duration="4000">
+                    <div class="rounded-lg shadow hover:shadow-md transition duration-300 bg-[var(--category-bg)]" data-aos="fade-down" data-aos-duration="4000">
                         {{-- Featured Image --}}
                         <a href="{{ route('read_post', $rec->slug) }}">
                             <img src="{{ asset('images/posts/' . $rec->featured_image) }}" alt="{{ $rec->title }}"
@@ -122,7 +122,7 @@
                         <div class="p-3">
                             {{-- Post Title --}}
                             <a href="{{ route('read_post', $rec->slug) }}">
-                                <h5 class="text-xl font-bold text-orange-600">
+                                <h5 class="text-xl font-extrabold text-[var(--primary-color)]">
                                     {{ $rec->title }}
                                 </h5>
                             </a>

@@ -15,6 +15,10 @@
   --second-white: #F8F8FF;
   --danger: oklch(0.59 0.2908 18.64);
   --hover: #fc5f50;
+  --dark-bg: #111827;
+  --category-bg : #1f2937;
+  --search-bg: #374151;
+  --hover-bg: #1f2d48;
 }
 
 

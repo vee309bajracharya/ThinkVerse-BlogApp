@@ -66,13 +66,13 @@
     </div>
 
     {{-- Mid Section --}}
-    <div class="grid grid-cols-1 gap-6 my-10">
+    <section class="grid grid-cols-1 gap-6 my-10">
         
         {{-- Recent Posts --}}
         <h3 class="text-lg font-semibold text-gray-800 mt-4 mb-14">Recent Posts</h3>
-        <div class="bg-secondary shadow rounded-lg p-6 text-white">
-            <table class="min-w-full divide-y rounded-md text-white">
-                <thead class="font-bold">
+        <div class="bg-transparent shadow rounded-lg p-6 text-white">
+            <table class="min-w-full divide-y divide-gray-200 rounded-md border">
+                <thead class="font-bold bg-gray-50">
                     <tr>
                         <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Title</th>
                         <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Author</th>
@@ -95,14 +95,14 @@
                 </tbody>
             </table>
             <div class="mt-4 text-center font-bold">
-                <a href="{{ route('admin.users-posts') }}" class="text-sm">View All</a>
+                <a href="{{ route('admin.users-posts') }}" class="text-sm hover:text-[var(--primary-color)]">View All</a>
             </div>
         </div>
 
         {{-- Recent Users --}}
-        <h4 class="text-lg font-semibold text-gray-800 my-14">Recent Users</h4>
+        <h3 class="text-lg font-semibold text-gray-800 mt-4 mb-14">Recent Users</h3>
         <div class="bg-transparent shadow rounded-lg p-6">
-            <table class="min-w-full divide-y divide-gray-200 rounded-md">
+            <table class="min-w-full divide-y divide-gray-200 rounded-md border">
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
@@ -125,19 +125,21 @@
                 </tbody>
             </table>
             <div class="mt-4 text-center font-bold">
-                <a href="{{ route('admin.users-list') }}" class="text-sm">View All</a>
+                <a href="{{ route('admin.users-list') }}" class="text-sm hover:text-[var(--primary-color)]">View All</a>
             </div>
         </div>
 
-    </div>
-
-    <div class="py-10">
-        <h4 class="text-lg font-semibold text-gray-800 ">Posts per Month</h4>
-        <div class="bg-[var(--second-white)] shadow-md rounded-lg p-5 mt-6">
-            <canvas id="postsViewsChart" height="100"></canvas>
+        {{-- chart here --}}
+        <div class="mt-4 mb-14">
+            <h4 class="text-lg font-semibold text-gray-800 ">Posts per Month</h4>
+            <div class="bg-[var(--second-white)] shadow-md rounded-lg p-5 mt-6">
+                <canvas id="postsViewsChart" height="100"></canvas>
+            </div>
+    
         </div>
+    </section>
 
-    </div>
+
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>

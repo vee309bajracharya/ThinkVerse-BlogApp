@@ -4,7 +4,7 @@
 
 <div class="max-w-[1400px] mx-auto my-0 py-[3rem] px-[2rem]">
     <div class="w-full mb-6">
-        <h3 class="text-2xl font-bold text-gray-600">
+        <h3 class="text-2xl font-bold">
             Posts tagged with 
            <span class="title-color">{{ $pageTitle }}</span> 
         </h3>
@@ -13,7 +13,7 @@
     @if ($posts->count())
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-3">
             @foreach ($posts as $post)
-                <article class="rounded-lg shadow hover:shadow-md transition">
+                <article class="rounded-lg shadow hover:shadow-md transition bg-[var(--category-bg)]">
                     <div class="mb-4">
                         <img src="{{ asset('images/posts/' . $post->featured_image) }}"
                              alt=""
