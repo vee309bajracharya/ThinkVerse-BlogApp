@@ -129,7 +129,7 @@
             </div>
         </div>
 
-        {{-- chart here --}}
+        {{-- chart analysis here --}}
         <div class="mt-4 mb-14">
             <h4 class="text-lg font-semibold text-gray-800 ">Posts per Month</h4>
             <div class="bg-[var(--second-white)] shadow-md rounded-lg p-5 mt-6">
